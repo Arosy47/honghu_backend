@@ -5,7 +5,7 @@
 
 ### 🔗 关联仓库 (Related Repositories)
 **本项目为后端 API 源码，前端小程序源码请移步：**
-👉 **[on_campus_mini_program (微信小程序端)](../on_campus_mini_program)**
+👉 **[honghu_mini_program (微信小程序端)](../honghu_mini_program)**
 
 *(🚀 建议同时 Star 两个仓库，以获取完整的前后端开发体验)*
 
@@ -80,7 +80,7 @@
 ### 3. 运行项目
 ```bash
 # 克隆项目
-git clone https://github.com/[你的GitHub用户名]/campus-alliance.git
+git clone https://github.com/[你的GitHub用户名]/honghu_backend.git
 
 # 编译打包
 mvn clean package -Dmaven.test.skip=true
