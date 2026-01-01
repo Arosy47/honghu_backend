@@ -1,4 +1,4 @@
-<img width="4197" height="1888" alt="图片10" src="https://github.com/user-attachments/assets/919d02b9-bd83-429a-ad2c-cea8b5817067" /># 红狐校园社区 (Honghu Campus Community) - Backend
+# 红狐校园社区 (Honghu Campus Community) - Backend
 
 > 🚀 **这是一个功能完善的全栈校园社区平台项目。**
 > 本仓库为 **后端 API 服务** 源码。
@@ -106,7 +106,7 @@ java -jar target/xiaomeng-1.0-SNAPSHOT.jar
 ## 沟通交流
 ### 电子邮箱：309095898@qq.com
 ### 群二维码
-![48f9f89b2bf3967bd740ef4b8b6d577e](https://github.com/user-attachments/assets/5aeb09ab-f8be-45e2-ad51-4ed51956a58d)
+<img width="237" height="237" alt="图片10" src="https://github.com/user-attachments/assets/3f6686a4-c3dc-4df9-bf1b-72db48c3dbaa" />
 
 
 
