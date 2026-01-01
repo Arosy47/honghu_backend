@@ -1,4 +1,4 @@
-# 红狐校园社区 (Honghu Campus Community) - Backend
+<img width="4197" height="1888" alt="图片10" src="https://github.com/user-attachments/assets/919d02b9-bd83-429a-ad2c-cea8b5817067" /># 红狐校园社区 (Honghu Campus Community) - Backend
 
 > 🚀 **这是一个功能完善的全栈校园社区平台项目。**
 > 本仓库为 **后端 API 服务** 源码。
@@ -13,6 +13,20 @@
 
 ## 📖 项目简介
 本项目致力于打造一个安全、活跃、便捷的校园生活圈。集成了**论坛社区、二手交易、即时通讯(IM)、校园跑腿、恋爱交友**等核心功能。采用主流的 Java Spring Boot 技术栈开发，结构清晰，适合作为**毕业设计、课程设计或创业项目的基石**。
+
+## 小程序二维码
+<img width="639" height="637" alt="image" src="https://github.com/user-attachments/assets/95d00eeb-6da1-4a7e-9bd9-9101eac70fe7" />
+
+## 效果演示
+<img width="3689" height="1648" alt="图片2" src="https://github.com/user-attachments/assets/76e11c7b-2df5-43a0-b6da-883bd5f51328" />
+<img width="3946" height="1770" alt="图片3" src="https://github.com/user-attachments/assets/49a493cc-62fc-4106-bd3c-482af0e3d5d9" />
+<img width="3965" height="1780" alt="图片4" src="https://github.com/user-attachments/assets/3a0c66ca-757f-4a12-9ccf-96aa32443319" />
+<img width="3971" height="1780" alt="图片5" src="https://github.com/user-attachments/assets/7590422b-de01-4e2f-88d1-0a8c19446216" />
+<img width="3817" height="1730" alt="图片6" src="https://github.com/user-attachments/assets/7ef396ad-d61b-4e11-8913-4584b2f6dc1a" />
+<img width="3681" height="1627" alt="图片7" src="https://github.com/user-attachments/assets/20d17f58-fec2-429d-aa46-ea6512857ffd" />
+<img width="3769" height="1692" alt="图片8" src="https://github.com/user-attachments/assets/e6658e21-8715-412d-b8fe-0586d0248110" />
+<img width="4197" height="1888" alt="图片10" src="https://github.com/user-attachments/assets/b7c78745-d58d-4dde-888b-80e66d081be3" />
+
 
 ## 🚀 功能与版本对比 (Community vs Pro)
 
@@ -88,6 +102,13 @@ mvn clean package -Dmaven.test.skip=true
 # 运行
 java -jar target/xiaomeng-1.0-SNAPSHOT.jar
 ```
+
+## 沟通交流
+### 电子邮箱：309095898@qq.com
+### 群二维码
+![48f9f89b2bf3967bd740ef4b8b6d577e](https://github.com/user-attachments/assets/5aeb09ab-f8be-45e2-ad51-4ed51956a58d)
+
+
 
 ## 🤝 贡献与支持
 如果你觉得这个项目对你有帮助，请给一个 ⭐️ **Star**！
