@@ -1,0 +1,11 @@
+# *.yml
+# *.yaml
+*.json
+*.lock
+*.lockb
+*.lockb.json
+*.properties
+*.xml
+*.p12
+*.pem
+

@@ -1,0 +1,43 @@
+
+# Maven
+target/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 敏感配置文件 (非常重要！一定要忽略)
+src/main/resources/application-dev.properties
+src/main/resources/application-production.properties
+src/main/resources/application-stage.properties
+src/main/resources/es-config.properties
+src/main/resources/wxpay_cert/
+
+# Temp scripts
+manual_lombok_fix*.js
+generate_stubs.js
+cleanup.js

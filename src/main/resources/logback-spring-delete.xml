@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="APP_NAME" value="xiaomeng" />
+    <property name="PROFILE" value="${spring.profiles.active}"/>
+    <property name="LOG_PATH" value="${user.home}/${APP_NAME}/log" />
+    <property name="LOG_FILE" value="${LOG_PATH}/application.log" />
+<!--    %T可能识别不出来，要用阿里的encoder，-->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | %logger | %C:%L |%T | %msg%n"/>
+
+
+    <!-- 彩色日志格式 -->
+    <!-- value值是日志输出模板， :-是属性名和其默认值之间的分隔符，作用与:相同 -->
+    <!-- 定义日志输出格式的转换规则，%d{yyyy-MM-dd HH:mm:ss.SSS}表示日期和时间，%clr表示将输出文本着色，{faint}表示使用淡色 -->
+    <!-- %5p表示日志级别输出右对齐，左边以空格填充 -->
+    <!-- ${PID:- }表示进程ID，%clr表示将输出文本着色，{magenta}表示使用洋红色 -->
+
+    <!-- %t：显示产生该日志的线程名；%15：若字符长度小于15，则左边用空格填充；%.15：若字符长度超过15，截去多余字符 -->
+    <!-- %-40：若字符长度小于40，则右边用空格填充；%.40：若字符长度超过40，截去多余字符；logger{39}对应的是“logging.WARNING”级别。具体来说，Python的logging模块定义了以下几个级别（从低到高）：NOTSET、DEBUG、INFO、WARNING、ERROR、CRITICAL。因此，logger{39}表示的是WARNING级别，即日志记录器会记录所有WARNING级别及以上的日志信息 -->
+    <!-- %m表示日志消息；%n表示换行符；${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}表示异常信息。如果日志输出中包含异常信息，这个规则将会将其转换为字符串，并将其中的换行符替换为空格，以便更容易地在日志输出中显示 -->
+<!--    <property name="CONSOLE_LOG_PATTERN"-->
+<!--              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>-->
+
+
+    <!--1. 输出到控制台-->
+    <!-- 定义控制台日志输出的appender，class="ch.qos.logback.core.ConsoleAppender"表示使用Logback框架提供的ConsoleAppender类来输出日志到控制台 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <!-- 定义日志输出级别的过滤器，class="ch.qos.logback.classic.filter.ThresholdFilter"表示使用Logback框架提供的ThresholdFilter类来过滤日志输出，<level>debug</level>表示只输出debug级别及以上的日志 -->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>debug</level>-->
+<!--        </filter>-->
+        <encoder>
+            <!-- ${CONSOLE_LOG_PATTERN}表示控制台日志输出格式，UTF-8表示编码格式 -->
+            <pattern>${LOG_PATTERN}</pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--2. 输出到文档-->
+    <!-- 2.1 level为 DEBUG 日志，时间滚动输出  -->
+    <!-- 定义文件日志输出的appender，class="ch.qos.logback.core.rolling.RollingFileAppender"表示使用Logback框架提供的RollingFileAppender类来输出日志到文件 -->
+    <appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 正在记录的日志文档的路径及文档名 -->
+        <file>${LOG_FILE}</file>
+        <!--日志文档输出格式-->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+        <!-- 定义日志文件滚动策略的标签，class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"表示使用Logback框架提供的TimeBasedRollingPolicy类来定义日志文件的滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志归档 -->
+            <!-- 定义日志文件名的模式。在这个模式中，${logging.path}表示日志文件的路径，%d{yyyy-MM-dd}表示日期格式，%i表示文件索引 -->
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--日志文档保留天数-->
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="bizDigestLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 正在记录的日志文档的路径及文档名 -->
+        <file>${LOG_PATH}/biz-digest.log</file>
+        <!--日志文档输出格式-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 天天日志归档路径以及格式 -->
+            <fileNamePattern>${LOG_PATH}/biz-degest.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="bizDigestLog" additivity="false">
+        <appender-ref ref="bizDigestLogAppender"/>
+    </logger>
+
+    <if condition='property("PROFILE").contains("dev")'>
+        <then>
+            <root level="INFO">
+                <appender-ref ref="CONSOLE"/>
+<!--                <appender-ref ref="APPLICATION"/>-->
+            </root>
+        </then>
+        <else>
+            <root level="INFO">
+                <appender-ref ref="APPLICATION"/>
+            </root>
+        </else>
+    </if>
+
+</configuration>

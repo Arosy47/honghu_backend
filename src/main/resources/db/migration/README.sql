@@ -1,0 +1,4 @@
+-- Place your database initialization SQL here
+-- Example:
+-- CREATE TABLE `user` ( ... );
+-- Since no SQL file was found in the project, please import your database schema manually.

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+<!--    <link rel="stylesheet" href="styles.css">-->
+<!--    <script src="app.js" defer></script>-->
+
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            margin-top: -50px; /* Move container up slightly */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #error-message {
+            margin-top: 10px;
+            color: red;
+        }
+
+        /* Footer styles */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer .icp-info {
+            color: #666;
+        }
+
+        footer a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('error-message');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+// 获取表单数据
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+// 在这里可以添加你的验证逻辑
+// 任何密码都会被认为是错误的
+                if (password !== 'correctPassword') {
+                    errorMessage.textContent = '密码错误';
+                } else {
+                    errorMessage.textContent = '';
+                    // 如果需要，可以在这里处理成功登录的逻辑
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="login-container">
+    <h1>登录</h1>
+    <form id="login-form">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">登录</button>
+    </form>
+    <div id="error-message"></div>
+</div>
+<footer>
+    <div class="icp-info">
+<!--        <p>备案号：京ICP备12345678号</p >-->
+        <a href="" target="_blank"></a>
+    </div>
+</footer>
+</body>
+</html>
+
+

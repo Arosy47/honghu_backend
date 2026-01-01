@@ -1,0 +1,77 @@
+version: '3'
+services:
+  mysql:
+    container_name: xiaomeng-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: xiaomeng
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: '%'
+      TZ: Asia/Shanghai
+    #    expose:
+    #      - "3306"
+    ports: # 映射端口
+      - "3306:3306"
+    volumes:
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+      - ~/mysql/mysql_data:/var/lib/mysql
+      - ~/mysql/my.cnf:/etc/my.cnf  # 挂载自定义配置文件
+    restart: always
+#    deepseek建议，为容器设置 CPU 和内存限制，防止资源耗尽：
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+
+
+  redis:
+    image: redis:6.2.6-alpine # 指定服务镜像，最好是与之前下载的redis配置文件保持一致
+    container_name: my_redis # 容器名称
+#    restart: on-failure # 重启方式
+    restart: always # 容器总是重新启动
+
+    environment:
+      - TZ=Asia/Shanghai # 设置时区
+    volumes: # 配置数据卷
+      - ~/redis/data:/data
+      - ~/redis/conf/redis.conf:/etc/redis/redis.conf
+      - ~/redis/logs:/logs
+    ports: # 映射端口
+      - 6379:6379
+    sysctls: # 设置容器中的内核参数
+      - net.core.somaxconn=1024
+    #  - vm.overcommit_memory=1
+    command: /bin/sh -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf
+      && redis-server /etc/redis/redis.conf --appendonly yes --replica-read-only no" # 指定配置文件并开启持久化
+#    replica-read-only(新版本)/slave-read-only 区别 https://www.cnblogs.com/fanshuyao/p/14156208.html
+
+    privileged: true # 使用该参数，container内的root拥有真正的root权限。否则，container内的root只是外部的一个普通用户权限
+
+
+  server:
+    container_name: xiaomeng-server
+    build: .
+    working_dir: /app
+    environment:
+      TZ: Asia/Shanghai
+      SPRING_PROFILES_ACTIVE: production
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
+#      - ./logs:/app/logs
+      - ./logs:/root/xiaomeng/log
+      - ./static:/app/static
+    ports:
+      - "8080:8090"
+#    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=production -Dmaven.test.skip=true
+    command: ["java", "-Xms4g", "-Xmx4g", "-Xmn2g", "-jar", "/app/target/xiaomeng-1.0-SNAPSHOT.jar"]
+    depends_on:
+      - mysql
+      - redis
+    restart: always #崩溃后自动重启
+
+
+
+
+
