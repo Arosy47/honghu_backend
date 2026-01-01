@@ -63,7 +63,7 @@ services:
       - ./logs:/root/xiaomeng/log
       - ./static:/app/static
     ports:
-      - "8080:8090"
+      - "8080:8091"
 #    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=production -Dmaven.test.skip=true
     command: ["java", "-Xms4g", "-Xmx4g", "-Xmn2g", "-jar", "/app/target/xiaomeng-1.0-SNAPSHOT.jar"]
     depends_on:

@@ -78,31 +78,58 @@
 *   **对象存储**: Tencent Cloud COS
 *   **工具库**: Lombok, MapStruct, Gson, Google Guava
 
-## 🚀 快速开始
+## 🚀 部署与运行 (Deployment)
 
-### 1. 环境准备
+本项目提供了 **Docker Compose 一键部署** (推荐) 和 **本地开发部署** 两种方式。
+
+### 方式一：Docker Compose 部署 (推荐)
+无需本地安装 MySQL 和 Redis，环境配置最简单，适合快速预览。
+
+#### 1. 环境准备
+*   安装 [Docker](https://www.docker.com/) 和 [Docker Compose](https://docs.docker.com/compose/install/)。
+*   确保宿主机端口 `8080`, `3306`, `6379` 未被占用。
+
+#### 2. 编译打包
+由于 Docker 容器需要挂载构建好的 Jar 包，请先在宿主机执行：
+```bash
+# 编译并跳过测试
+mvn clean package -Dmaven.test.skip=true
+```
+
+#### 3. 启动服务
+```bash
+# 在项目根目录下执行
+docker-compose up -d
+```
+*   启动成功后，后端 API 地址：`http://localhost:8080`
+*   **MySQL 信息**：端口 `3306`，账号 `root`，密码 `123456`，数据库 `xiaomeng`
+*   **Redis 信息**：端口 `6379`，无密码
+
+---
+
+### 方式二：本地开发部署
+适合源码阅读、二次开发和调试。
+
+#### 1. 环境准备
 *   JDK 1.8+
 *   MySQL 8.0+
 *   Redis 5.0+
-*   Elasticsearch 6.5.3 (可选，如不开启搜索功能可跳过)
+*   IntelliJ IDEA (推荐)
 
-### 2. 配置文件
-由于安全原因，敏感配置文件已在 `.gitignore` 中忽略。请在 `src/main/resources` 下参考 `application.properties` 创建 `application-dev.properties`，并配置以下信息：
-*   数据库连接 (url, username, password)
-*   Redis 连接 (host, port, password)
-*   微信小程序配置 (appId, secret)
-*   腾讯云 COS 配置 (secretId, secretKey)
+#### 2. 配置文件
+由于安全原因，敏感配置建议使用环境变量或创建 `application-dev.properties` 覆盖。
+主要配置项 (`src/main/resources/application.properties`)：
+*   **数据库**：修改 `spring.datasource.url`, `username`, `password`
+*   **Redis**：修改 `spring.redis.host`, `port`
+*   **小程序**：修改 `wx.miniapp.configs` 下的 `appid` 和 `secret`
 
-### 3. 运行项目
+#### 3. 运行项目
 ```bash
-# 克隆项目
-git clone https://github.com/Arosy47/honghu_backend.git
-
-# 编译打包
-mvn clean package -Dmaven.test.skip=true
-
-# 运行
+# 方式 A：命令行运行
 java -jar target/xiaomeng-1.0-SNAPSHOT.jar
+
+# 方式 B：IDE 运行
+# 找到 com.fmx.xiaomeng.App 类，右键 Run 'App'
 ```
 
 ## 沟通交流
