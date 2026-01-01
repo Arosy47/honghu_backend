@@ -15,7 +15,7 @@
 本项目致力于打造一个安全、活跃、便捷的校园生活圈。集成了**论坛社区、二手交易、即时通讯(IM)、校园跑腿、恋爱交友**等核心功能。采用主流的 Java Spring Boot 技术栈开发，结构清晰，适合作为**毕业设计、课程设计或创业项目的基石**。
 
 ## 小程序二维码
-<img width="639" height="637" alt="image" src="https://github.com/user-attachments/assets/95d00eeb-6da1-4a7e-9bd9-9101eac70fe7" />
+<img width="239" height="237" alt="image" src="https://github.com/user-attachments/assets/95d00eeb-6da1-4a7e-9bd9-9101eac70fe7" />
 
 ## 效果演示
 <img width="3689" height="1648" alt="图片2" src="https://github.com/user-attachments/assets/76e11c7b-2df5-43a0-b6da-883bd5f51328" />
