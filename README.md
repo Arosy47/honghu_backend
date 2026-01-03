@@ -1,4 +1,4 @@
-# 红狐校园社区 (Honghu Campus Community) - Backend
+# 红狐校园论坛社区 (Honghu Campus Community) - Backend
 
 > 🚀 **这是一个功能完善的全栈校园社区平台项目。**
 > 本仓库为 **后端 API 服务** 源码。
